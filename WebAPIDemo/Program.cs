@@ -20,9 +20,9 @@ app.MapGet("/shirts/{id}", (int id) =>
     return $"Reading shirt with ID: {id}";
 });
 
-app.MapPost("/shirts", (string shirt) =>
+app.MapPost("/shirts", () =>
 {
-    return $"Creating a new shirt: {shirt}";
+    return $"Creating a new shirt.";
 });
 
 app.MapPut("/shirts/{id}", (int id) =>
