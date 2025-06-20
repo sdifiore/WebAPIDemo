@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+using WebAPIDemo.Models;
+
 namespace WebAPIDemo
 {
     [ApiController]
@@ -13,13 +15,13 @@ namespace WebAPIDemo
         }
 
         [HttpGet("{id}")]
-        public string GetShirtById(int id, [FromHeader(Name = "Color")] string color)
+        public string GetShirtById(int id)
         {
-            return $"Reading shirt with ID: {id}, color: {color}";
+            return $"Reading shirt with ID: {id}";
         }
 
         [HttpPost]
-        public string CreateShirt()
+        public string CreateShirt([FromBody] Shirt shirt)
         {
             return "Creating a new shirt.";
         }
