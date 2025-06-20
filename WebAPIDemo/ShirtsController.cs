@@ -21,7 +21,7 @@ namespace WebAPIDemo
         }
 
         [HttpPost]
-        public string CreateShirt([FromBody] Shirt shirt)
+        public string CreateShirt([FromForm] Shirt shirt)
         {
             return "Creating a new shirt.";
         }
