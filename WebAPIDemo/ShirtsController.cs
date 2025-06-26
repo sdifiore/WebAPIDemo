@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
 using WebAPIDemo.Models;
+using WebAPIDemo.Models.Repositories;
 
 namespace WebAPIDemo
 {
@@ -8,14 +9,6 @@ namespace WebAPIDemo
     [Route("api/[controller]")]
     public class ShirtsController : ControllerBase
     {
-        private readonly List<Shirt> shirts =
-        [
-            new Shirt { ShirtId = 1, Brand = "T-Shirt", Color = "Blue", Gender = "Men", Size = 10, Price = 30 },
-            new Shirt { ShirtId = 3, Brand = "T-Shirt", Color = "Black", Gender = "Men", Size = 12, Price = 35 },
-            new Shirt { ShirtId = 3, Brand = "Z-Shirt", Color = "Pink", Gender = "Women", Size = 8, Price = 28 },
-            new Shirt { ShirtId = 4, Brand = "Z-Shirt", Color = "Yellow", Gender = "Women", Size = 9, Price = 30 },
-        ];
-
         [HttpGet]
         public IActionResult GetShirt()
         {
@@ -28,7 +21,7 @@ namespace WebAPIDemo
             if (id <= 0)
                 return BadRequest("Invalid shirt ID.");
 
-            Shirt? shirt = shirts.FirstOrDefault(s => s.ShirtId == id);
+            Shirt? shirt = ShirtRepository.GetShirtById(id);
 
             if (shirt == null)
                 return NotFound();
