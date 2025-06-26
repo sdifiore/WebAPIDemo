@@ -8,34 +8,50 @@ namespace WebAPIDemo
     [Route("api/[controller]")]
     public class ShirtsController : ControllerBase
     {
+        private readonly List<Shirt> shirts =
+        [
+            new Shirt { ShirtId = 1, Brand = "T-Shirt", Color = "Blue", Gender = "Men", Size = 10, Price = 30 },
+            new Shirt { ShirtId = 3, Brand = "T-Shirt", Color = "Black", Gender = "Men", Size = 12, Price = 35 },
+            new Shirt { ShirtId = 3, Brand = "Z-Shirt", Color = "Pink", Gender = "Women", Size = 8, Price = 28 },
+            new Shirt { ShirtId = 4, Brand = "Z-Shirt", Color = "Yellow", Gender = "Women", Size = 9, Price = 30 },
+        ];
+
         [HttpGet]
-        public string GetShirt()
+        public IActionResult GetShirt()
         {
-            return "Reading all the shirt";
+            return Ok("Reading all the shirt");
         }
 
         [HttpGet("{id}")]
-        public string GetShirtById(int id)
+        public IActionResult GetShirtById(int id)
         {
-            return $"Reading shirt with ID: {id}";
+            if (id <= 0)
+                return BadRequest("Invalid shirt ID.");
+
+            Shirt? shirt = shirts.FirstOrDefault(s => s.ShirtId == id);
+
+            if (shirt == null)
+                return NotFound();
+
+            return Ok(shirt);
         }
 
         [HttpPost]
-        public string CreateShirt([FromBody] Shirt shirt)
+        public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
-            return "Creating a new shirt.";
+            return Ok("Creating a new shirt.");
         }
 
         [HttpPut("{id}")]
-        public string UpdateShirt(int id)
+        public IActionResult UpdateShirt(int id)
         {
-            return $"Updating shirt with ID: {id}";
+            return Ok($"Updating shirt with ID: {id}");
         }
 
         [HttpDelete("{id}")]
-        public string DeleteShirt(int id)
+        public IActionResult DeleteShirt(int id)
         {
-            return $"Deleting shirt with ID: {id}";
+            return Ok($"Deleting shirt with ID: {id}");
         }
     }
 }
