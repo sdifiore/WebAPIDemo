@@ -8,13 +8,13 @@ namespace WebAPIDemo.Models
     {
         public int ShirtId { get; set; }
 
-        [Required(ErrorMessage = "Shirt name is required.")]
+        [Required]
         public string? Brand { get; set; }
 
-        [Required(ErrorMessage = "Shirt color is required.")]
+        [Required]
         public string? Color { get; set; }
 
-        [Shirt_EnsureCorrectSizing]
+        [ShirtEnsureCorrectSizing]
         public int? Size { get; set; }
 
         [Required]

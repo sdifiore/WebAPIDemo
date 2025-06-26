@@ -2,11 +2,11 @@
 
 namespace WebAPIDemo.Models.Validations
 {
-    public class Shirt_EnsureCorrectSizingAttribute : ValidationAttribute
+    public class ShirtEnsureCorrectSizingAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var shirt = validationContext.ObjectInstance as Shirt;
+            Shirt? shirt = validationContext.ObjectInstance as Shirt;
 
             if (shirt != null && !string.IsNullOrWhiteSpace(shirt.Gender))
             {
@@ -17,6 +17,11 @@ namespace WebAPIDemo.Models.Validations
             }
 
             return ValidationResult.Success;
+        }
+
+        private string GetDebuggerDisplay()
+        {
+            return ToString() ?? string.Empty; // Fixes CS8603 by ensuring a non-null return value
         }
     }
 }
