@@ -10,6 +10,11 @@
             new Shirt { ShirtId = 4, Brand = "Z-Shirt", Color = "Yellow", Gender = "Women", Size = 9, Price = 30 },
         ];
 
+        public static IEnumerable<Shirt> GetAllShirts()
+        {
+            return shirts;
+        }
+
         public static bool ShirtExists(int id)
         {
             return shirts.Any(s => s.ShirtId == id);

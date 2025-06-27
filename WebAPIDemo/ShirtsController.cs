@@ -13,7 +13,7 @@ namespace WebAPIDemo
         [HttpGet]
         public IActionResult GetShirt()
         {
-            return Ok("Reading all the shirt");
+            return Ok(ShirtRepository.GetAllShirts());
         }
 
         [HttpGet("{id}")]
