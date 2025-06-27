@@ -10,4 +10,12 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="D:\Estudos\WebAPIDemo\WebAPIDemo\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="D:\Estudos\WebAPIDemo\WebAPIDemo\.editorconfig" />
+  </ItemGroup>
+
 </Project>
