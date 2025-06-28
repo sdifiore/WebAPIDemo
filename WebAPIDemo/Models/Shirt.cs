@@ -21,6 +21,5 @@ namespace WebAPIDemo.Models
         public string? Gender { get; set; }
 
         public double? Price { get; set; }
-        // Additional properties can be added as needed
     }
 }
