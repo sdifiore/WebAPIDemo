@@ -25,18 +25,18 @@
             return shirts.FirstOrDefault(s => s.ShirtId == id);
         }
 
-        public static Shirt? GetShirtByProperty(string? brand, string? gender, string? color, int? size)
+        public static Shirt? GetShirtByProperties(string? brand, string? gender, string? color, int? size)
         {
             return shirts.FirstOrDefault(s =>
                 !string.IsNullOrWhiteSpace(brand) &&
                 !string.IsNullOrWhiteSpace(s.Brand) &&
-                !s.Brand.Equals(brand, StringComparison.OrdinalIgnoreCase) &&
+                s.Brand.Equals(brand, StringComparison.OrdinalIgnoreCase) &&
                 !string.IsNullOrWhiteSpace(gender) &&
                 !string.IsNullOrWhiteSpace(s.Gender) &&
-                !s.Gender.Equals(gender, StringComparison.OrdinalIgnoreCase) &&
+                s.Gender.Equals(gender, StringComparison.OrdinalIgnoreCase) &&
                 !string.IsNullOrWhiteSpace(color) &&
                 !string.IsNullOrWhiteSpace(s.Color) &&
-                !s.Color.Equals(color, StringComparison.OrdinalIgnoreCase) &&
+                s.Color.Equals(color, StringComparison.OrdinalIgnoreCase) &&
                 size.HasValue &&
                 s.Size.HasValue &&
                 size.Value == s.Size.Value);

@@ -27,10 +27,10 @@ namespace WebAPIDemo
         public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
             if (shirt == null)
-                return BadRequest(nameof(shirt));
+                return BadRequest();
 
             // Fix for CS8600: Use null conditional operator and null coalescing operator
-            Shirt? existingShirt = ShirtRepository.GetShirtByProperty(
+            Shirt? existingShirt = ShirtRepository.GetShirtByProperties(
                 shirt.Brand,
                 shirt.Gender,
                 shirt.Color,
@@ -44,6 +44,7 @@ namespace WebAPIDemo
 
             return CreatedAtAction(nameof(GetShirtById),
                 new { id = shirt.ShirtId }, shirt);
+            // WebApi Convention: Returns 201 Created with the location of the new resource
         }
 
         [HttpPut("{id}")]
