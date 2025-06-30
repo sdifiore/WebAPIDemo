@@ -24,22 +24,9 @@ namespace WebAPIDemo
         }
 
         [HttpPost]
+        [ShirtValidateCreateFilter]
         public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
-            if (shirt == null)
-                return BadRequest();
-
-            // Fix for CS8600: Use null conditional operator and null coalescing operator
-            Shirt? existingShirt = ShirtRepository.GetShirtByProperties(
-                shirt.Brand,
-                shirt.Gender,
-                shirt.Color,
-                shirt.Size
-            );
-
-            if (existingShirt != null)
-                return BadRequest();
-
             ShirtRepository.AddShirt(shirt);
 
             return CreatedAtAction(nameof(GetShirtById),
