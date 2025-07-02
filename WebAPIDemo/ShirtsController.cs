@@ -35,9 +35,26 @@ namespace WebAPIDemo
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateShirt(int id)
+        [ShirtValidateShirtIdFilter]
+        public IActionResult UpdateShirt(int id, Shirt shirt)
         {
-            return Ok($"Updating shirt with ID: {id}");
+            if (id != shirt.ShirtId)
+                return BadRequest("Shirt ID mismatch.");
+
+            try
+            {
+                ShirtRepository.UpdateShirt(shirt);
+            }
+
+            catch
+            {
+                if (!ShirtRepository.ShirtExists(id))
+                    return NotFound($"Shirt with ID {id} not found.");
+
+                throw; // http 500 Internal Server Error
+            }
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
