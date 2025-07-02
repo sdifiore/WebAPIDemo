@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using WebAPIDemo.Models;
 using WebAPIDemo.Models.Repositories;
 
-namespace WebAPIDemo.Filters
+namespace WebAPIDemo.Filters.ActionFilters
 {
     public class ShirtValidateCreateFilterAttribute : ActionFilterAttribute
     {
@@ -12,7 +12,7 @@ namespace WebAPIDemo.Filters
         {
             base.OnActionExecuting(context);
 
-            Shirt? shirt = context.ActionArguments["shirt"] as Models.Shirt;
+            Shirt? shirt = context.ActionArguments["shirt"] as Shirt;
 
             if (shirt is null)
             {
