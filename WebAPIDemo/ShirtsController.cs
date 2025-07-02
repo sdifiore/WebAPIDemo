@@ -35,12 +35,10 @@ namespace WebAPIDemo
         }
 
         [HttpPut("{id}")]
+        [ShirtValidateUpdateFilter]
         [ShirtValidateShirtIdFilter]
         public IActionResult UpdateShirt(int id, Shirt shirt)
         {
-            if (id != shirt.ShirtId)
-                return BadRequest("Shirt ID mismatch.");
-
             try
             {
                 ShirtRepository.UpdateShirt(shirt);
