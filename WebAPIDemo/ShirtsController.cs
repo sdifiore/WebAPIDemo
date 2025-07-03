@@ -38,7 +38,7 @@ namespace WebAPIDemo
         [HttpPut("{id}")]
         [ShirtValidateUpdateFilter]
         [ShirtValidateShirtIdFilter]
-        [ShirtHandleUpdateExceptionsFilterAttibute]
+        [ShirtHandleUpdateExceptionsFilter]
         public IActionResult UpdateShirt(int id, Shirt shirt)
         {
             ShirtRepository.UpdateShirt(shirt);
@@ -49,7 +49,10 @@ namespace WebAPIDemo
         [HttpDelete("{id}")]
         public IActionResult DeleteShirt(int id)
         {
-            return Ok($"Deleting shirt with ID: {id}");
+            Shirt? shirt = ShirtRepository.GetShirtById(id);
+            ShirtRepository.DeleteShirt(id);
+
+            return Ok(shirt);
         }
     }
 }

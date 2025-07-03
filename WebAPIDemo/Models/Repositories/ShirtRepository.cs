@@ -54,10 +54,18 @@
         {
             Shirt shirtToUpdate = shirts.First(s => s.ShirtId == shirt.ShirtId);
             shirtToUpdate.Brand = shirt.Brand;
-            shirtToUpdate.Color = shirt.Color;
             shirtToUpdate.Price = shirt.Price;
             shirtToUpdate.Size = shirt.Size;
+            shirtToUpdate.Color = shirt.Color;
             shirtToUpdate.Gender = shirt.Gender;
+        }
+
+        public static void DeleteShirt(int shirtId)
+        {
+            Shirt? shirtToDelete = GetShirtById(shirtId);
+
+            if (shirtToDelete != null)
+                shirts.Remove(shirtToDelete);
         }
     }
 }
